@@ -1,0 +1,67 @@
+﻿@page
+@model Haitian_Market.Pages.List_ProductModel
+@{
+    ViewData["Title"] = "Liste";
+}
+<table class="table">
+
+    <!--  <tr> <th style="cursor: pointer;">Id</th>
+        <th style="cursor: pointer;">Name</th>
+        <th style="cursor: pointer;">Brand</th>
+        <th style="cursor: pointer;">Category</th>
+        <th style="cursor: pointer;">Price</th>
+        <th>Image</th>
+        <th style="cursor: pointer;">CreatAt</th>
+        <th>Action</th> 
+        
+         <td>product.Name</td>
+         </tr>-->
+       
+   
+    @foreach (var product in Model.Products)
+    {
+        <tr>
+            <td>
+                <!-- Image du produit -->
+                <img src="/Products/@product.ImageFileName"  style="display: inline-block; vertical-align: top;" class="image_and_description">
+
+                <!-- Description du produit -->
+                <div class="product_description" style="display: inline-block; vertical-align: top;">
+                    <p class="first_p"> @product.Name  create by @product.Brand , @product.Description </p>
+
+
+                    <p class="price">@product.Price GHT</p>
+                   
+                    <!-- Date de création du produit -->
+                    <p>Post date: @product.CreatedAt.ToString("MM/dd/yyyy")</p>
+
+                    <div style="display: inline-block; vertical-align: top;">
+                        <a type="button" class="btn btn-success" asp-area="" asp-page="/BuyingInfo"> Buy </a>
+                    </div>
+                </div >
+               
+            </td>
+        </tr>
+
+
+    }
+
+</table>
+
+<nav>
+    <ul class="pagination">
+
+        @for (int i = 1; i <= Model.totalPage; i++)
+        {
+            string active = "";
+
+            if (i == Model.pageIndex) active = "active";
+
+            <li class="page-item @active" aria-current="page">
+                <a class="page-link" href="?pageIndex=@(i)&search=@(Model.search)">@i</a>
+
+            </li>
+        }
+
+    </ul>
+</nav>

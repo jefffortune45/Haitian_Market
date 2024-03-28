@@ -1,0 +1,63 @@
+﻿@page
+@model Haitian_Market.Pages.Admin.Products.IndexModel
+@{
+}
+
+<h2 class="text-center mb-5"> List of products</h2>
+<div class="row mb-5">
+    <div class="col">
+      <a class="btn btn-primary" href="/Admin/Products/Create">New Product </a>
+    </div>
+    <div class="col">
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" name="search" value="@Model.search" placeholder="Search by name or Brand" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> 
+    </div>
+
+</div>
+
+<table class="table">
+    <tr>
+        <th style="cursor: pointer;">Id</th>
+        <th style ="cursor: pointer;">Name</th>
+        <th style="cursor: pointer;">Brand</th>
+        <th style="cursor: pointer;">Category</th>
+        <th style="cursor: pointer;">Price</th>
+        <th >Image</th>
+        <th style="cursor: pointer;">CreatAt</th>
+        <th>Action</th>
+    </tr>
+    @foreach(var product in Model.Products){
+        <tr>
+            <td>@product.Id</td>
+            <td>@product.Name</td>
+            <td>@product.Brand</td>
+            <td>@product.Category</td>
+            <td>@(product.Price)$</td>
+            <td><img src="/Products/@product.ImageFileName" width="100"></td>
+            <td>@product.CreatedAt.ToString("MM/dd/YYYY")</td>
+            <td style="white-space:nowrap">
+                <a class="btn btn-primary btn-sm" href="/Admin/Products/Edit?id=@product.Id"> Edit</a>
+                <a class="btn btn-danger btn-sm" href="/Admin/Products/Delete?id=@product.Id"> Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>
+<nav >
+    <ul class="pagination">
+       
+       @for(int i = 1; i<= Model.totalPage; i ++ ){
+            string active = "";
+
+            if (i == Model.pageIndex) active = "active";
+
+            <li class="page-item @active" aria-current="page">
+                <a class="page-link" href="?pageIndex=@(i)&search=@(Model.search)">@i</a>
+
+            </li>
+       }
+        
+    </ul>
+</nav>

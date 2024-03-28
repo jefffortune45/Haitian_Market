@@ -1,0 +1,21 @@
+﻿@page
+@model Haitian_Market.Pages.Admin.Products.DeleteModel
+@{
+}
+
+<h2>Delete Product</h2>
+
+<!-- Affichez les détails du produit ou d'autres informations si nécessaire -->
+<!-- Ajoutez un bouton pour déclencher la suppression avec la boîte de dialogue de confirmation -->
+<button class="btn btn-danger" onclick="confirmDelete()">Delete Product</button>
+
+<!-- Ajoutez un script JavaScript pour gérer la confirmation -->
+<script>
+    function confirmDelete() {
+        var confirmation = confirm("Are you sure you want to delete this product?");
+        if (confirmation) {
+            // Redirigez vers la méthode OnGet de votre modèle pour effectuer la suppression
+            window.location.href = "/Admin/Products/Delete?id=@Model.Product.Id";
+        }
+    }
+</script>

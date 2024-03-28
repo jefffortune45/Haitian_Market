@@ -1,0 +1,113 @@
+﻿@page
+@model Haitian_Market.Pages.Admin.Products.CreateModel
+@{
+}
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5 ">New Product</h2>
+        @if(Model.errorMessage.Length > 0){
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>@Model.errorMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"la></button>
+            </div>
+        }
+        else if(Model.successMessage.Length >0){
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>@Model.successMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" la></button>
+            </div>
+        }
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Nam</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="productDto.Name"/>
+                    <span asp-validation-for="productDto.Name" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Brand</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="productDto.Brand" />
+                    <span asp-validation-for="productDto.Brand" class="text-danger"></span>
+
+                </div>
+            </div>
+         
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Category</label>
+                <div class="col-sm-8">
+                   <select class="form-select" asp-for="productDto.Category">
+                         <option value="Other"> Other</option>
+                                              
+                        <option value="Accessories"> Accessories</option>                         
+                       
+                        <option value="Arts & Crafts"> Arts & Crafts</option>
+                        <option value="Automotive"> Automotive</option>
+                        <option value="Baby"> Baby</option>
+                        <option value="Beauty & Personal care"> Beauty & Personal care</option>
+                        <option value="Books"> Book</option>
+                        <option value="Boy's Fashion"> Boy's Fashion</option>
+                           <option value="Cameras"> Cameras</option>
+                        <option value="Computers"> Computers</option>
+                        <option value="Deals"> Deals</option>
+
+                           <option value="Digital Music"> Digital Music</option>
+                         <option value="Electronic"> Electronic</option>
+                        <option value="Girls Fashion"> Gir's Fashion</option>
+                        <option value="Home & Kitchen"> Home& Kitchen</option>
+                         <option value="Men's Fashion"> Men's Fashion</option>
+                        <option value="Phones & Accessories"> Phones & Accessories</option>
+                        <option value="Printers"> Printers</option>
+                        <option value="Software"> Software</option>
+                        <option value="Sport & Outdoors"> Sport & Outdoors</option>
+
+                        <option value="Tools & HomeImprovement"> Tools & HomeImprovement</option>
+                        <option value="Toys & Games"> Toys & Games</option>
+                        <option value="Video Games"> Video Game</option>
+                        <option value="watches"> watches</option>
+                        <option value="Women's Fashion"> Accessories</option>
+                        
+                   </select>
+
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Price</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="productDto.Price" />
+                    <span asp-validation-for="productDto.Price" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Description</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" asp-for="productDto.Description"> </textarea>
+                    <span asp-validation-for="productDto.Description" class="text-danger"></span>
+
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Image</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="productDto.ImageFile" />
+                    <span asp-validation-for="productDto.ImageFile" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="row mb-3">
+
+                <div class="offset-sm-4 col-sm-4 d-grid">
+                    <button type="submit" class=" btn btn-primary">Submit</button>
+                </div>
+                <div class="col-sm-4 d-grid">
+                    <a class="btn btn-outline-primary" asp-area="" asp-page="/Admin/Products/Index" role="button">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
